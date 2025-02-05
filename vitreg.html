@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIT-Festivity 2025 Registration</title>
+    <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+body {
+    height: 100vh;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(255, 0, 150, 0.5), transparent);
+    top: 10%;
+    left: 10%;
+    animation: glow 6s infinite alternate;
+}
+
+body::after {
+    content: "";
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(0, 200, 255, 0.5), transparent);
+    bottom: 10%;
+    right: 10%;
+    animation: glow 6s infinite alternate-reverse;
+}
+.container {
+    width: 90%;
+    max-width: 450px;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    backdrop-filter: blur(20px);
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.5);
+    animation: fadeIn 1s ease-in-out;
+}
+h2 {
+    color: white;
+    font-size: 28px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 20px;
+    text-shadow: 0px 0px 15px rgba(255, 255, 255, 0.7);
+}
+input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 2px solid white;
+    border-radius: 10px;
+    font-size: 16px;
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+    outline: none;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+
+input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+input:focus {
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.8);
+    border-color: rgba(255, 255, 255, 0.9);
+}
+
+.error {
+    color: #ffcccb;
+    font-size: 14px;
+    margin-top: -5px;
+    display: block;
+    text-align: left;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.3);
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: all 0.3s ease-in-out;
+    text-transform: uppercase;
+    box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.6);
+}
+
+button:hover {
+    background: rgba(255, 255, 255, 0.4);
+    transform: scale(1.05);
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+#message {
+    margin-top: 15px;
+    font-size: 16px;
+    color: white;
+    font-weight: bold;
+    text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.7);
+}
+@media (max-width: 480px) {
+    .container {
+        width: 95%;
+    }
+}
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>VIT-Festivity 2025 Registration</h2>
+        <form id="registrationForm">
+            <input type="text" id="name" placeholder="Full Name" required>
+            <span id="nameError" class="error"></span>
+
+            <input type="email" id="email" placeholder="VIT Email (@vitstudent.ac.in)" required>
+            <span id="emailError" class="error"></span>
+
+            <input type="password" id="password" placeholder="Password (12-20 chars,
+             special, uppercase, lowercase, numbers)" required>
+            <span id="passwordError" class="error"></span>
+
+            <input type="text" id="zip" placeholder="ZIP Code (6 digits)" required>
+            <span id="zipError" class="error"></span>
+
+            <input type="text" id="mobile" placeholder="Mobile (+91xxxxxxxxxx, 13 digits incl.
+             country code)" required>
+            <span id="mobileError" class="error"></span>
+
+            <button type="button" onclick="validateForm()">Register</button>
+        </form>
+
+        <div id="message"></div>
+    </div>
+
+    <script>
+        function validateForm() {
+            let name = document.getElementById("name").value.trim();
+            let email = document.getElementById("email").value.trim();
+            let password = document.getElementById("password").value.trim();
+            let zip = document.getElementById("zip").value.trim();
+            let mobile = document.getElementById("mobile").value.trim();
+
+            let valid = true;
+
+            // Clear previous errors
+            document.querySelectorAll(".error").forEach(el => el.textContent = "");
+
+            // ✅ Email Validation
+            let emailRegex = /^[a-zA-Z0-9._%+-]+@(vit\.ac\.in|vitstudent\.ac\.in)$/i;
+            if (!emailRegex.test(email)) {
+                valid = false;
+            document.getElementById("emailError").textContent="❌ Use @vit.ac.in or @vitstudent.ac.in email!";
+            }
+
+            // ✅ Zip Code (6 digits)
+            if (!/^\d{6}$/.test(zip)) {
+                valid = false;
+            document.getElementById("zipError").textContent = "❌ ZIP code must be exactly 6 digits!";
+            }
+
+            // ✅ Mobile Number (+91xxxxxxxxxx)
+            let mobileRegex = /^\+\d{12}$/;
+            if (!mobileRegex.test(mobile)) {
+                valid = false;
+                document.getElementById("mobileError").textContent = "❌ Use format +919876543210 (13 digits)!";
+            }
+
+            // ✅ Password Validation
+            let uniqueChars = new Set(password).size >= 6;
+            let lengthValid = password.length >= 12 && password.length <= 20;
+            let complexityCheck = [
+                /[A-Z]/.test(password),   // Uppercase
+                /[a-z]/.test(password),   // Lowercase
+                /\d/.test(password),      // Number
+                /[~!@#$%^*\-_=+\[\]{}\/;:,.?]/.test(password) // Special characters
+            ];
+            let complexityValid = complexityCheck.filter(Boolean).length >= 3;
+
+            if (!(lengthValid && uniqueChars && complexityValid)) {
+                valid = false;
+                document.getElementById("passwordError").textContent =
+                    "❌ Password must be 12-20 chars, have 6+ unique characters, and at least 3 types (uppercase, lowercase, number, special).";
+            }
+
+            if (valid) {
+                document.getElementById("message").innerHTML = 
+                    "🎉 yeyyyyyyyyy! You just unlocked VIP status at VIT Festivity 2025!Are u ready?";
+                document.getElementById("registrationForm").reset();
+            }
+        }
+    </script>
+
+</body>
+</html>
